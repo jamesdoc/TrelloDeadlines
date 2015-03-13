@@ -1,5 +1,6 @@
 www/config.py
 setuptools-*
+*.pyc
 
 # Vagrant
 .vagrant/
@@ -8,4 +9,4 @@ setuptools-*
 /.DS_Store
 
 # Pycharm
-.idea/*
+.idea*

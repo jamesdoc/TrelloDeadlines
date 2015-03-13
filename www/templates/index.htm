@@ -2,15 +2,21 @@
 
 <head>
 
-<title>Trello Deadlines</title>
+    <title>Trello Deadlines</title>
 
 </head>
 
 <body>
 
-	<h1>Trello Deadlines</h1>
+    <h1>Trello Deadlines</h1>
 
-	<p>Hello world</p>
+    <ul>
+    {% for card in cards %}
+        <li>
+            <div>{{ card.due }}: {{ card.name }}</div>
+        </li>
+    {% endfor %}
+    </ul>
 
 </body>
 
