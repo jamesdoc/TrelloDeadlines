@@ -19,6 +19,13 @@
 
     <hr />
 
+    <h2>Next Thirty Days</h2>
+    {% for card in timeboxed['thirty_days'] %}
+        <li>
+            <div><strong>{{ card.due.strftime('%d %b') }}</strong>: {{ card.name }}</div>
+        </li>
+    {% endfor %}
+
     <h2>Upcoming</h2>
     {% for card in timeboxed['radar'] %}
         <li>

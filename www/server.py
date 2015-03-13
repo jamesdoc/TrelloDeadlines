@@ -48,8 +48,7 @@ class IndexHandler(tornado.web.RequestHandler, TemplateRendering):
 
         date_today = today.date()
         date_seven_days = date_today - datetime.timedelta(-7)
-        print date_today
-        print date_seven_days
+        date_thirty_days = date_today - datetime.timedelta(-30)
 
         for card in cards:
             card['due'] = datetime.datetime.strptime(card['due'], "%Y-%m-%dT%H:%M:%S.%fZ")
@@ -60,6 +59,8 @@ class IndexHandler(tornado.web.RequestHandler, TemplateRendering):
                 timebox['past'].append(card)
             elif date_card <= date_seven_days:
                 timebox['this_week'].append(card)
+            elif date_card <= date_thirty_days:
+                timebox['thirty_days'].append(card)
             else:
                 timebox['radar'].append(card)
         return timebox
