@@ -11,7 +11,7 @@ Presented as:
 
 ## Up and running
 
-1. Copy `www/config_template.py` to `www/config.py` and add in Trello details
+1. Copy `www/config_template.py` to `www/config.py` and add in [Trello details](https://trello.com/app-key)
 2. `vagrant up && vagrant ssh`
 3. `cd /vagrant/www`
 4. `python server.py`
