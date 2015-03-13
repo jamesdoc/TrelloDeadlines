@@ -1,0 +1,11 @@
+www/config.py
+setuptools-*
+
+# Vagrant
+.vagrant/
+
+# Apple
+/.DS_Store
+
+# Pycharm
+.idea/*
