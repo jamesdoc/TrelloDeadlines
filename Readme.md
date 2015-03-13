@@ -9,3 +9,9 @@ Presented as:
 - On the RADAR
 - Past deadlines (last 5-10)
 
+## Up and running
+
+1. Copy `www/config_template.py` to `www/config.py` and add in Trello details
+2. `vagrant up && vagrant ssh`
+3. `cd /vagrant/www`
+4. `python server.py`
