@@ -7,6 +7,7 @@ from config import config
 from os import path, environ, walk
 from jinja2 import Environment, FileSystemLoader, TemplateNotFound
 from operator import itemgetter
+import datetime
 
 define("port", default=8080, help="run on the given port", type=int)
 
@@ -31,13 +32,37 @@ class IndexHandler(tornado.web.RequestHandler, TemplateRendering):
         cards_raw = self.get_cards_for_list_of_boards(config['boards'])
         cards_with_dates = self.get_cards_with_due_dates(cards_raw)
         cards_sorted = sorted(cards_with_dates, key=itemgetter('due'))
+        cards_timeboxed = self.sort_cards_into_timeboxes(cards_sorted)
 
         data = {
-            'cards': self.get_cards_with_due_dates(cards_sorted)
+            'cards': self.get_cards_with_due_dates(cards_sorted),
+            'timeboxed': cards_timeboxed
         }
 
         content = self.render_template('index.htm', data)
         self.write(content)
+
+    def sort_cards_into_timeboxes(self, cards):
+        timebox = {'past': [], 'this_week': [], 'thirty_days': [], 'radar': []}
+        today = datetime.datetime.now()
+
+        date_today = today.date()
+        date_seven_days = date_today - datetime.timedelta(-7)
+        print date_today
+        print date_seven_days
+
+        for card in cards:
+            card['due'] = datetime.datetime.strptime(card['due'], "%Y-%m-%dT%H:%M:%S.%fZ")
+
+            date_card = card['due'].date()
+
+            if date_card < today.date():
+                timebox['past'].append(card)
+            elif date_card <= date_seven_days:
+                timebox['this_week'].append(card)
+            else:
+                timebox['radar'].append(card)
+        return timebox
 
     def get_cards_for_list_of_boards(self, boards):
         cards = []

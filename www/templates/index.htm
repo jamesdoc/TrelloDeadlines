@@ -10,14 +10,30 @@
 
     <h1>Trello Deadlines</h1>
 
-    <ul>
-    {% for card in cards %}
+    <h2>Next seven days</h2>
+    {% for card in timeboxed['this_week'] %}
         <li>
-            <div>{{ card.due }}: {{ card.name }}</div>
+            <div><strong>{{ card.due.strftime('%d %b') }}</strong>: {{ card.name }}</div>
         </li>
     {% endfor %}
-    </ul>
 
+    <hr />
+
+    <h2>Upcoming</h2>
+    {% for card in timeboxed['radar'] %}
+        <li>
+            <div><strong>{{ card.due.strftime('%d %b') }}</strong>: {{ card.name }}</div>
+        </li>
+    {% endfor %}
+
+    <hr />
+
+    <h2>Past</h2>
+    {% for card in timeboxed['past'] %}
+        <li>
+            <div><strong>{{ card.due.strftime('%d %b') }}</strong>: {{ card.name }}</div>
+        </li>
+    {% endfor %}
 </body>
 
 </html>
