@@ -1,0 +1,16 @@
+{
+  "name": "TrelloDeadlines",
+  "version": "0.0.1",
+  "author": "James Doc",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jamesdoc/TrelloDeadlines.git"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-compass": "^2.0.3"
+  }
+}

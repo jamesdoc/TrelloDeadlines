@@ -1,12 +1,22 @@
+# Config is where we save API keys and tokens.
 www/config.py
+
+# Build folder is where compiled goodness goes
+www/build/*
+/temp
+
 setuptools-*
 *.pyc
+*.log
+
+/node_modules/*
+.sass-cache/
 
 # Vagrant
 .vagrant/
 
 # Apple
-/.DS_Store
+.DS_Store
 
 # Pycharm
 .idea*
