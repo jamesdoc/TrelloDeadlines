@@ -30,6 +30,11 @@ class TemplateRendering(object):
 class IndexHandler(tornado.web.RequestHandler, TemplateRendering):
     def get(self):
         cards_raw = self.get_cards_for_list_of_boards(config['boards'])
+
+        if type(cards_raw) is unicode:
+            self.display_error(cards_raw)
+            return
+
         cards_with_dates = self.get_cards_with_due_dates(cards_raw)
         cards_sorted = sorted(cards_with_dates, key=itemgetter('due'))
         cards_timeboxed = self.sort_cards_into_timeboxes(cards_sorted)
@@ -41,6 +46,9 @@ class IndexHandler(tornado.web.RequestHandler, TemplateRendering):
 
         content = self.render_template('index.htm', data)
         self.write(content)
+
+    def display_error(self, msg):
+        self.write('<h1>%s</h1>' % msg)
 
     def sort_cards_into_timeboxes(self, cards):
         timebox = {'past': [], 'this_week': [], 'thirty_days': [], 'radar': []}
@@ -69,6 +77,11 @@ class IndexHandler(tornado.web.RequestHandler, TemplateRendering):
         cards = []
         for board in boards:
             board_cards = self.get_cards_from_board(board)
+
+            # If the Trello API returns an error it comes back as unicode.
+            if type(board_cards) is unicode:
+                return board_cards
+
             cards = cards + board_cards
         return cards
 
@@ -88,7 +101,10 @@ class IndexHandler(tornado.web.RequestHandler, TemplateRendering):
 
     def talk_to_api(self, url):
         r = requests.get(url)
-        return r.json()
+        try:
+            return r.json()
+        except ValueError:
+            return r.text
 
 
 
