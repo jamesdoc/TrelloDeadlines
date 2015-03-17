@@ -8,8 +8,13 @@ from os import path, environ, walk
 from jinja2 import Environment, FileSystemLoader, TemplateNotFound
 from operator import itemgetter
 import datetime
+import os
 
 define("port", default=8080, help="run on the given port", type=int)
+
+settings = {
+    "static_path": os.path.join(os.path.dirname(__file__), "build"),
+}
 
 CARDS_IN_BOARDS_URL = "https://api.trello.com/1/boards/%s/cards/open?key=%s&token=%s"
 
@@ -106,10 +111,11 @@ class IndexHandler(tornado.web.RequestHandler, TemplateRendering):
         except ValueError:
             return r.text
 
-
+print settings['static_path']
 
 app = tornado.web.Application([
-    (r'/', IndexHandler),
+    (r"/a/(.*)", tornado.web.StaticFileHandler, dict(path=settings['static_path'])),
+    (r"/", IndexHandler),
 ])
 
 if __name__ == '__main__':

@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
     compass = require('gulp-compass'),
-    path = require('path');
+    path = require('path'),
+    watch = require('gulp-livereload');
 
 gulp.task('compass', function() {
     gulp.src('assets/sass/*.scss')
@@ -10,6 +11,14 @@ gulp.task('compass', function() {
         sass: 'assets/sass'
     }))
     .pipe(gulp.dest('temp'));
+});
+
+gulp.task('test', function () {
+   console.log('test test test');
+});
+
+gulp.task('watch', function() {
+    gulp.watch('assets/sass/*.scss', ['compass']);
 });
 
 gulp.task('default', ['compass']);
