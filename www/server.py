@@ -111,8 +111,6 @@ class IndexHandler(tornado.web.RequestHandler, TemplateRendering):
         except ValueError:
             return r.text
 
-print settings['static_path']
-
 app = tornado.web.Application([
     (r"/a/(.*)", tornado.web.StaticFileHandler, dict(path=settings['static_path'])),
     (r"/", IndexHandler),
