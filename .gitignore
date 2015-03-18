@@ -8,6 +8,7 @@ www/build/*
 setuptools-*
 *.pyc
 *.log
+get-pip.py
 
 /node_modules/*
 .sass-cache/
