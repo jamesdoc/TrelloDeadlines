@@ -11,67 +11,63 @@
 <body>
 
     <header>
-        <div class="page-container">
-            <h1>Upcoming Deadlines</h1>
-            <!--<em>Powered by <strong>Trello</strong></em>-->
-        </div>
+        <h1>Upcoming Deadlines</h1>
+        <!--<em>Powered by <strong>Trello</strong></em>-->
     </header>
 
-    <div class="page-container">
 
-        <div class="list seven-days">
-            <h2>Next Seven Days</h2>
+    <div class="list seven-days">
+        <h2>Next Seven Days</h2>
 
-            <ul class="cards">
-            {% for card in timeboxed['this_week'] %}
-                <li>
-                    <strong class="date">{{ card.due.strftime('%A %d %B') }}</strong>
-                    <p class="title">{{ card.name }}</p>
-                </li>
-            {% endfor %}
-            </ul>
-        </div>
-
-        <div class="list thirty-days">
-            <h2>Next Thirty Days</h2>
-
-            <ul class="cards">
-            {% for card in timeboxed['thirty_days'] %}
-                <li>
-                    <strong class="date">{{ card.due.strftime('%A %d %B') }}</strong>
-                    <p class="title">{{ card.name }}</p>
-                </li>
-            {% endfor %}
-            </ul>
-        </div>
-
-        <div class="list upcoming">
-            <h2>Upcoming</h2>
-
-            <ul class="cards">
-            {% for card in timeboxed['radar'] %}
-                <li>
-                    <strong class="date">{{ card.due.strftime('%A %d %B') }}</strong>
-                    <p class="title">{{ card.name }}</p>
-                </li>
-            {% endfor %}
-            </ul>
-        </div>
-
-        <div class="list past">
-            <h2>Past</h2>
-
-            <ul class="cards">
-            {% for card in timeboxed['past'] %}
-                <li>
-                    <strong class="date">{{ card.due.strftime('%A %d %B') }}</strong>
-                    <p class="title">{{ card.name }}</p>
-                </li>
-            {% endfor %}
-            </ul>
-        </div>
-
+        <ul class="cards">
+        {% for card in timeboxed['this_week'] %}
+            <li>
+                <strong class="date">{{ card.due.strftime('%A %d %B') }}</strong>
+                <p class="title">{{ card.name }}</p>
+            </li>
+        {% endfor %}
+        </ul>
     </div>
+
+    <div class="list thirty-days">
+        <h2>Next Thirty Days</h2>
+
+        <ul class="cards">
+        {% for card in timeboxed['thirty_days'] %}
+            <li>
+                <strong class="date">{{ card.due.strftime('%A %d %B') }}</strong>
+                <p class="title">{{ card.name }}</p>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+
+    <div class="list upcoming">
+        <h2>Upcoming</h2>
+
+        <ul class="cards">
+        {% for card in timeboxed['radar'] %}
+            <li>
+                <strong class="date">{{ card.due.strftime('%A %d %B') }}</strong>
+                <p class="title">{{ card.name }}</p>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+
+    <div class="list past">
+        <h2>Past</h2>
+
+        <ul class="cards">
+        {% for card in timeboxed['past'] %}
+            <li>
+                <strong class="date">{{ card.due.strftime('%A %d %B') }}</strong>
+                <p class="title">{{ card.name }}</p>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+
 </body>
 
 </html>
