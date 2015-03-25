@@ -1,8 +1,6 @@
 # Config is where we save API keys and tokens.
 www/config.py
 
-# Build folder is where compiled goodness goes
-www/build/*
 /temp
 
 setuptools-*
